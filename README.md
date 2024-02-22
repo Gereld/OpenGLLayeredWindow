@@ -18,7 +18,7 @@ References :
 
 # Building and installing
 
-See the [BUILDING](BUILDING.md) document.
+Requires C++20. A Visual Studio 2022 solution is included in the vs2022 folder otherwise ee the [BUILDING](BUILDING.md) document.
 
 # Licensing
 

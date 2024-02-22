@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="res">
+      <UniqueIdentifier>{4FA5880B-BBAE-887C-442A-9F7CB032947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\io">
+      <UniqueIdentifier>{9D2910F6-0994-C46C-52D2-7512BE7BA2C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\ogl">
+      <UniqueIdentifier>{277615B8-132E-5705-7C35-3061680CF2F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\pix">
+      <UniqueIdentifier>{B67A15B8-A232-5705-0B3A-3061F710F2F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\wex">
+      <UniqueIdentifier>{F99715B8-E54F-5705-4E57-30613A2EF2F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\wgl">
+      <UniqueIdentifier>{2F9815B8-1B50-5705-8457-3061702EF2F5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\View.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\gl.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\io\ReadFile.h">
+      <Filter>source\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\io\Wavefront.h">
+      <Filter>source\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ogl\OpenGLContext.h">
+      <Filter>source\ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ogl\Utility1.h">
+      <Filter>source\ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ogl\Utility3.h">
+      <Filter>source\ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\pix\Pixmap.h">
+      <Filter>source\pix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\stdafx.hpp">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Bitmap.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\DC.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\DIBSection.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Point.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Rect.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Resource.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Size.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\Window.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wex\WindowClass.h">
+      <Filter>source\wex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\wgl\OpenGLContext.h">
+      <Filter>source\wgl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\View.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\io\ReadFile.cpp">
+      <Filter>source\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\io\Wavefront.cpp">
+      <Filter>source\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\pix\Pixmap.cpp">
+      <Filter>source\pix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\stdafx.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wex\Bitmap.cpp">
+      <Filter>source\wex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wex\DIBSection.cpp">
+      <Filter>source\wex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wex\Resource.cpp">
+      <Filter>source\wex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wex\Window.cpp">
+      <Filter>source\wex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wex\WindowClass.cpp">
+      <Filter>source\wex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wgl\OpenGLContext.cpp">
+      <Filter>source\wgl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\res\Resource.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
