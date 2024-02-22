@@ -1,0 +1,11 @@
+#include "resource.h"
+
+IDI_APP_ICON        ICON        "app.ico"
+IDI_SMALL           ICON        "small.ico"
+
+Mesh					RCDATA 		"mesh.obj"
+flat.frag				RCDATA 		"../shaders/flat.frag"
+vertex.vert				RCDATA 		"../shaders/vertex.vert"
+per_face_phong.geom		RCDATA 		"../shaders/per_face_phong.geom"
+per_pixel_phong.frag	RCDATA 		"../shaders/per_pixel_phong.frag"
+per_pixel_phong.geom	RCDATA 		"../shaders/per_pixel_phong.geom"
