@@ -3,10 +3,10 @@
 #include "wex/Resource.h"
 
 #include <array>
-#include <vector>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
 
 // ************************************************************************************************
 // ************************************************************************************************
@@ -52,9 +52,8 @@ static std::string_view load_from_resource( const wchar_t * name ) {
 // ************************************************************************************************
 // ************************************************************************************************
 
-View::View( wex::DIBSection & dib ) 
-	: m_dib( dib ) 
-{
+View::View( wex::DIBSection & dib )
+	: m_dib( dib ) {
 	auto t = glm::mat4{ 1 };
 	t      = glm::rotate( t, glm::radians( 45.f ), glm::vec3{ 0, 0, 1 } );
 	t      = glm::rotate( t, glm::radians( 45.f ), glm::vec3{ 1, 0, 0 } );
@@ -77,9 +76,9 @@ void View::OnCreate( unsigned int w, unsigned int h ) {
 
 	// Setup the 3D program
 	{
-		auto vs = ogl::shader::create<ogl::VertexShader>( load_from_resource( L"vertex.vert" )  );
-		auto gs = ogl::shader::create<ogl::GeometryShader>( load_from_resource( L"per_face_phong.geom" )  );
-		auto fs = ogl::shader::create<ogl::FragmentShader>( load_from_resource( L"flat.frag" ) );
+		auto vs  = ogl::shader::create<ogl::VertexShader>( load_from_resource( L"vertex.vert" ) );
+		auto gs  = ogl::shader::create<ogl::GeometryShader>( load_from_resource( L"per_face_phong.geom" ) );
+		auto fs  = ogl::shader::create<ogl::FragmentShader>( load_from_resource( L"flat.frag" ) );
 		auto prg = ogl::program::create( vs, gs, fs );
 
 		m_mesh->m_proj_mat_loc = glGetUniformLocation( prg, "projMatrix" );
@@ -135,8 +134,8 @@ void main()
 }
 		)";
 
-		auto vs = ogl::shader::create<ogl::VertexShader>( vs_2d );
-		auto fs = ogl::shader::create<ogl::FragmentShader>( fs_2d );
+		auto vs  = ogl::shader::create<ogl::VertexShader>( vs_2d );
+		auto fs  = ogl::shader::create<ogl::FragmentShader>( fs_2d );
 		auto prg = ogl::program::create( vs, fs );
 
 		m_rect->m_proj_mat_loc = glGetUniformLocation( prg, "projMatrix" );
@@ -147,7 +146,7 @@ void main()
 	// Setup the rectangle VAO
 	{
 		auto vao = ogl::VertexArray::CreateAndBind();
-		
+
 		auto vbo = ogl::VertexBuffer::CreateAndBind();
 		glEnableVertexAttribArray( 0 );
 		glVertexAttribPointer(
@@ -214,7 +213,7 @@ void View::OnDestroy() {
 }
 
 void View::OnSize( unsigned int w, unsigned int h ) {
-	m_width = w;
+	m_width  = w;
 	m_height = h;
 }
 
@@ -222,7 +221,7 @@ void View::Render() {
 	std::chrono::time_point<std::chrono::high_resolution_clock> now          = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float>                                run_time     = std::chrono::duration_cast<std::chrono::duration<float>>( now - m_start_timepoint );
 	float                                                       camera_speed = 360.0f / 10.0f;
-	float                                                       camera_angle = run_time.count() * camera_speed; 
+	float                                                       camera_angle = run_time.count() * camera_speed;
 
 	m_frame_buffer.bind( GL_FRAMEBUFFER );
 	glViewport( 0, 0, m_width, m_height );
@@ -240,7 +239,7 @@ void View::Render() {
 
 		glm::mat4 view_matrix = glm::lookAt( eye, center, up ) * m;
 		glm::mat4 proj_matrix = glm::perspective( glm::radians( 45.0f ), static_cast<float>( m_width ) / static_cast<float>( m_height ), 1.f, 200.f );
-	
+
 		m_mesh->m_prg.bind();
 		glUniformMatrix4fv( m_mesh->m_view_mat_loc, 1, GL_FALSE, glm::value_ptr( view_matrix ) );
 		glUniformMatrix4fv( m_mesh->m_proj_mat_loc, 1, GL_FALSE, glm::value_ptr( proj_matrix ) );
@@ -252,7 +251,7 @@ void View::Render() {
 	// Draw the rectangle
 	{
 		ogl::SaveState<GL_DEPTH_TEST> sd( false );
-		ogl::SaveState<GL_BLEND> sb( true );
+		ogl::SaveState<GL_BLEND>      sb( true );
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glBlendEquationSeparate( GL_FUNC_ADD, GL_MAX );
 
@@ -274,7 +273,7 @@ void View::Render() {
 	// Copy the content of the color framebuffer to an image
 	glReadBuffer( GL_COLOR_ATTACHMENT0 );
 	glReadPixels( 0, 0, m_dib.Width(), m_dib.Height(), GL_BGRA, GL_UNSIGNED_BYTE, m_dib.Bits() );
-	
+
 	ogl::Framebuffer::unbind( GL_FRAMEBUFFER );
 }
 
@@ -322,7 +321,7 @@ void View::Update() {
 }
 
 void View::SetMesh( std::vector<glm::vec3> vertices, std::vector<std::array<int, 3>> triangles ) {
-	m_vertices = std::move( vertices );
+	m_vertices  = std::move( vertices );
 	m_triangles = std::move( triangles );
 
 	Update();

@@ -24,7 +24,7 @@ void split_lines( std::string_view sv, std::vector<std::string_view> & output ) 
 		}
 
 		// handle CRLF
-		if( (sv[second] == '\r') && ((second + 1) < sv.size()) && (sv[second + 1] == '\n') ) {
+		if( ( sv[second] == '\r' ) && ( ( second + 1 ) < sv.size() ) && ( sv[second + 1] == '\n' ) ) {
 			++second;
 		}
 
@@ -33,9 +33,9 @@ void split_lines( std::string_view sv, std::vector<std::string_view> & output ) 
 }
 
 std::vector<std::string_view> split_lines( std::string_view sv ) {
-    std::vector<std::string_view> output;
+	std::vector<std::string_view> output;
 	split_lines( sv, output );
-    return output;
+	return output;
 }
 
 void split( std::string_view sv, char delim, std::vector<std::string_view> & output ) {
@@ -56,9 +56,9 @@ void split( std::string_view sv, char delim, std::vector<std::string_view> & out
 }
 
 std::vector<std::string_view> split( std::string_view sv, char delim = ' ' ) {
-    std::vector<std::string_view> output;
+	std::vector<std::string_view> output;
 	split( sv, delim, output );
-    return output;
+	return output;
 }
 
 void basic_wavefront_obj_importer( std::string_view sv, std::vector<glm::vec3> & vertices, std::vector<std::array<int, 3>> & facets ) {
@@ -67,7 +67,7 @@ void basic_wavefront_obj_importer( std::string_view sv, std::vector<glm::vec3> &
 
 	for( auto line : lines ) {
 		if( line.empty() ) {
-			continue;		
+			continue;
 		}
 
 		if( line[0] == '#' ) {
@@ -84,7 +84,7 @@ void basic_wavefront_obj_importer( std::string_view sv, std::vector<glm::vec3> &
 			// format: v x y z [w]
 
 			std::array<float, 3> coord = { 0.f, 0.f, 0.f };
-			size_t count = std::min( coord.size(), tokens.size() - 1 );
+			size_t               count = std::min( coord.size(), tokens.size() - 1 );
 			for( int i = 0; i < count; ++i ) {
 				auto token = tokens[i + 1];
 				std::from_chars( token.data(), token.data() + token.size(), coord[i] );
@@ -97,19 +97,19 @@ void basic_wavefront_obj_importer( std::string_view sv, std::vector<glm::vec3> &
 			// format: f v1/vt1/vn1 v2/vt2/vn2 v3/vt3/vn3 ...
 			// indices start at 1
 
-			std::array<int, 3> facet = { 0, 0, 0 };
+			std::array<int, 3>            facet = { 0, 0, 0 };
 			std::vector<std::string_view> idxs;
 
 			size_t count = std::min( 3ull, tokens.size() - 1 );
 			for( int i = 0; i < count; ++i ) {
 				auto token = tokens[i + 1];
-	
+
 				idxs.clear();
 				split( token, '/', idxs );
 				if( !idxs.empty() ) {
 					// only use the first attribute, skip the rest
 					auto idx_sv = idxs[0];
-					int idx = 0;
+					int  idx    = 0;
 					std::from_chars( idx_sv.data(), idx_sv.data() + idx_sv.size(), idx );
 					facet[i] = idx - 1;
 				}
@@ -120,4 +120,4 @@ void basic_wavefront_obj_importer( std::string_view sv, std::vector<glm::vec3> &
 	}
 }
 
-} // namesspace io
+} // namespace io

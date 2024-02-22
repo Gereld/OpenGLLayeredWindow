@@ -1,14 +1,14 @@
-#include "gl.h"
 #include "View.h"
-#include "wex/DC.h"
-#include "wex/WindowClass.h"
-#include "wex/Window.h"
-#include "wex/DIBSection.h"
-#include "wgl/OpenGLContext.h"
-#include "pix/Pixmap.h"
-#include "io/Wavefront.h"
+#include "gl.h"
 #include "io/ReadFile.h"
+#include "io/Wavefront.h"
+#include "pix/Pixmap.h"
+#include "wex/DC.h"
+#include "wex/DIBSection.h"
 #include "wex/Resource.h"
+#include "wex/Window.h"
+#include "wex/WindowClass.h"
+#include "wgl/OpenGLContext.h"
 
 #include <ShellApi.h>
 #include <ShellScalingAPI.h>
@@ -25,13 +25,12 @@ public:
 	wex::DIBSection    m_dib;
 
 public:
-	MyWindow() 
-		: m_view( m_dib )
-	{
+	MyWindow()
+		: m_view( m_dib ) {
 	}
 
 	LRESULT WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) override {
-		switch (uMsg) {
+		switch( uMsg ) {
 		case WM_CREATE:
 			return OnCreate( reinterpret_cast<LPCREATESTRUCT>( lParam ) );
 
@@ -57,7 +56,7 @@ public:
 
 	LRESULT OnCreate( LPCREATESTRUCT lpCreateStruct ) {
 		HDC hDC = GetDC( m_hWnd );
-		
+
 		// Create an OpengL 2.x context
 		m_context.Create( hDC );
 		m_context.MakeCurrent();
@@ -67,8 +66,8 @@ public:
 
 		// Create an OpenGL 3.3 context based on the given attributes
 		int attributes[] = {
-			WGL_CONTEXT_MAJOR_VERSION_ARB, 3, // Set the MAJOR version of OpenGL to 3
-			WGL_CONTEXT_MINOR_VERSION_ARB, 3, // Set the MINOR version of OpenGL to 3
+			WGL_CONTEXT_MAJOR_VERSION_ARB, 3,                               // Set the MAJOR version of OpenGL to 3
+			WGL_CONTEXT_MINOR_VERSION_ARB, 3,                               // Set the MINOR version of OpenGL to 3
 			WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB, // Use core profile
 			0
 		};
@@ -97,7 +96,7 @@ public:
 		// The height is negated because we want a bottom-up DIBSECTION (like OpenGL buffers/textures)
 		m_dib.Create( wr.Width(), -wr.Height(), 32, wex::CompressionFormat::RGB );
 
-		// Create the view. The view will do the drawing into the DIBSECTION. 
+		// Create the view. The view will do the drawing into the DIBSECTION.
 		m_view.OnCreate( wr.Width(), wr.Height() );
 
 		return TRUE;
@@ -115,15 +114,15 @@ public:
 		m_view.OnSize( size.cx, size.cy );
 	}
 
-	LRESULT OnNcHitTest( wex::Point point )  {
+	LRESULT OnNcHitTest( wex::Point point ) {
 		// Treat all clicks as if we click on the caption. It's an easy way to move the window.
 		return HTCAPTION;
 	}
 
 	void OpenFile( const std::filesystem::path & filename ) {
-		std::vector<glm::vec3> vertices;
+		std::vector<glm::vec3>          vertices;
 		std::vector<std::array<int, 3>> triangles;
-		std::string buffer = io::read_text_file( filename );
+		std::string                     buffer = io::read_text_file( filename );
 		io::basic_wavefront_obj_importer( buffer, vertices, triangles );
 		m_view.SetMesh( std::move( vertices ), std::move( triangles ) );
 	}
@@ -161,8 +160,7 @@ int WINAPI WinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	LPSTR     lpCmdLine,
-	int       nCmdShow 
-) {
+	int       nCmdShow ) {
 	// Enable DPI awareness (ie disable system-wide High-DPI scaling)
 	SetProcessDpiAwareness( PROCESS_PER_MONITOR_DPI_AWARE );
 
@@ -181,7 +179,7 @@ int WINAPI WinMain(
 	{
 		std::span buffer = wex::get_resource_data( hInstance, L"Mesh" );
 
-		std::vector<glm::vec3> vertices;
+		std::vector<glm::vec3>          vertices;
 		std::vector<std::array<int, 3>> triangles;
 		io::basic_wavefront_obj_importer( std::string_view( buffer.data(), buffer.size() ), vertices, triangles );
 

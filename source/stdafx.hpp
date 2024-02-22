@@ -3,7 +3,7 @@
 
 #include <winsdkver.h>
 #ifndef _WIN32_WINNT
- 	#define _WIN32_WINNT _WIN32_WINNT_MAXVER
+#define _WIN32_WINNT _WIN32_WINNT_MAXVER
 #endif
 #include <sdkddkver.h>
 
@@ -21,8 +21,8 @@
 #include <array>
 #include <memory>
 #include <span>
-#include <string_view>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #endif // _STDAFX_H_

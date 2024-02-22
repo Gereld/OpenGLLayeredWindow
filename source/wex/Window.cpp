@@ -24,7 +24,7 @@ LRESULT CALLBACK Window::ClassWindowProc( HWND hWnd, UINT uMsg, WPARAM wParam, L
 		pWnd->m_hWnd  = hWnd;
 	}
 
-	Window * pWnd = reinterpret_cast<Window *>(::GetWindowLongPtr( hWnd, GWLP_USERDATA ) );
+	Window * pWnd = reinterpret_cast<Window *>( ::GetWindowLongPtr( hWnd, GWLP_USERDATA ) );
 
 	LRESULT nResult;
 	if( pWnd ) {
@@ -43,7 +43,7 @@ LRESULT CALLBACK Window::ClassWindowProc( HWND hWnd, UINT uMsg, WPARAM wParam, L
 	return nResult;
 }
 
-bool Window::CreateEx( DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, const wex::Rect & rect, HWND hWndParent, HMENU hMenu  ) {
+bool Window::CreateEx( DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, const wex::Rect & rect, HWND hWndParent, HMENU hMenu ) {
 	int       x         = rect.left;
 	int       y         = rect.top;
 	int       width     = rect.Width();
