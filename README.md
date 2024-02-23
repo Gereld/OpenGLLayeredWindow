@@ -2,6 +2,8 @@
 
 This is the OpenGLLayeredWindow project.
 
+![Screen capture](doc/screen_capture.png)
+
 This toy program demonstrate how to use OpenGL to render a layered window. The window has no borders with alpha transparency. It is derived from [this](https://www.dhpoware.com/demos/glLayeredWindows.html) example with some differences :
 - the code is in C++
 - it uses OpenGL 3.3
